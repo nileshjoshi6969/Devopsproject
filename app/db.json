@@ -1,0 +1,28 @@
+{
+  "transporters": [
+    {
+      "id": 1,
+      "name": "Ravi Logistics",
+      "truck": "Tata 407",
+      "fare_per_km": 12,
+      "rating": 4.5,
+      "past_trips": 120
+    },
+    {
+      "id": 2,
+      "name": "Singh Transport",
+      "truck": "Ashok Leyland",
+      "fare_per_km": 10,
+      "rating": 4.2,
+      "past_trips": 85
+    },
+    {
+      "id": 3,
+      "name": "Kumar Carriers",
+      "truck": "Mahindra Bolero",
+      "fare_per_km": 8,
+      "rating": 4.7,
+      "past_trips": 200
+    }
+  ]
+}
