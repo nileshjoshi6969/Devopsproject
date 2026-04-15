@@ -2,10 +2,67 @@
 <html>
 <head>
   <title>Transporters</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2f3640;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #273c75;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      font-size: 18px;
+    }
+
+    .loading {
+      text-align: center;
+      font-size: 18px;
+    }
+  </style>
 </head>
+
 <body>
+
   <h1>🚚 Available Transporters</h1>
-  <div id="list">Loading...</div>
+
+  <div id="status" class="loading">Loading...</div>
+  <div class="container" id="list"></div>
 
   <script>
     async function loadTransporters() {
@@ -14,27 +71,37 @@
         const data = await res.json();
 
         const list = document.getElementById("list");
+        const status = document.getElementById("status");
 
         if (!data || data.error) {
-          list.innerHTML = "❌ Failed to load data";
+          status.innerHTML = "❌ Failed to load data";
+          status.className = "error";
           return;
         }
 
+        status.style.display = "none";
+
         list.innerHTML = data.map(t => `
-          <div>
+          <div class="card">
             <h3>${t.name}</h3>
-            <p>Truck: ${t.truck}</p>
-            <p>Fare: ${t.fare_per_km}</p>
-            <hr>
+            <p>🚛 <strong>Truck:</strong> ${t.truck}</p>
+            <p>💰 <strong>Fare/km:</strong> ₹${t.fare_per_km}</p>
+            <p>⭐ <strong>Rating:</strong> ${t.rating}</p>
+            <p>📦 <strong>Trips:</strong> ${t.past_trips}</p>
+            <p>📞 <strong>Phone:</strong> ${t.phone}</p>
+            <p>📧 <strong>Email:</strong> ${t.email}</p>
+            <p>📍 <strong>Location:</strong> ${t.location}</p>
           </div>
         `).join('');
 
       } catch (err) {
-        document.getElementById("list").innerHTML = "❌ Error loading data";
+        document.getElementById("status").innerHTML = "❌ Error loading data";
+        document.getElementById("status").className = "error";
       }
     }
 
     loadTransporters();
   </script>
+
 </body>
 </html>
