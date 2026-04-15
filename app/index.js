@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 app.get('/api/transporters', (req, res) => {
     try {
         const db = JSON.parse(
-            fs.readFileSync(path.join(__dirname, 'db.json'), 'utf8')
+            fs.readFileSync(path.join(__dirname, 'public', 'db.json'), 'utf8')
         );
         res.json(db.transporters);
     } catch (err) {
