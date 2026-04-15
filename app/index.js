@@ -17,16 +17,21 @@ app.get('/api/transporters', (req, res) => {
     try {
         const filePath = path.join(__dirname, 'public', 'db.json');
 
-        const data = fs.readFileSync(filePath, 'utf8');  // ✅ correct
-        const db = JSON.parse(data);                     // ✅ correct
+        console.log("Reading file:", filePath);
+
+        const data = fs.readFileSync(filePath, 'utf8');
+        const db = JSON.parse(data);
+
+        if (!db.transporters) {
+            return res.status(500).json({ error: "Invalid DB format" });
+        }
 
         res.json(db.transporters);
     } catch (err) {
-        console.error(err);  // 👈 IMPORTANT (helps debug)
-        res.status(500).json({ error: "Failed to load transporters" });
+        console.error("ERROR:", err.message);
+        res.status(500).json({ error: err.message });
     }
 });
-
 // ✅ POST a new bid
 app.post('/api/bids', (req, res) => {
     const { from, to, weight } = req.body;

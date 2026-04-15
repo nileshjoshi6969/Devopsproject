@@ -1,0 +1,68 @@
+{
+  "transporters": [
+    {
+      "id": 1,
+      "name": "Ravi Logistics",
+      "truck": "Tata 407",
+      "fare_per_km": 12,
+      "rating": 4.5,
+      "past_trips": 120
+    },
+    {
+      "id": 2,
+      "name": "Singh Transport",
+      "truck": "Ashok Leyland",
+      "fare_per_km": 10,
+      "rating": 4.2,
+      "past_trips": 85
+    },
+    {
+      "id": 3,
+      "name": "Kumar Carriers",
+      "truck": "Mahindra Bolero",
+      "fare_per_km": 8,
+      "rating": 4.7,
+      "past_trips": 200
+    },
+    {
+      "id": 4,
+      "name": "Sharma Freight",
+      "truck": "Eicher Pro",
+      "fare_per_km": 11,
+      "rating": 4.3,
+      "past_trips": 150
+    },
+    {
+      "id": 5,
+      "name": "Patel Transport Co.",
+      "truck": "Tata LPT 1615",
+      "fare_per_km": 13,
+      "rating": 4.6,
+      "past_trips": 175
+    },
+    {
+      "id": 6,
+      "name": "Delhi Movers",
+      "truck": "Ashok Leyland Dost",
+      "fare_per_km": 9,
+      "rating": 4.1,
+      "past_trips": 95
+    },
+    {
+      "id": 7,
+      "name": "Express Cargo",
+      "truck": "Mahindra Jeeto",
+      "fare_per_km": 7,
+      "rating": 4.0,
+      "past_trips": 60
+    },
+    {
+      "id": 8,
+      "name": "FastTrack Logistics",
+      "truck": "Eicher 1110",
+      "fare_per_km": 14,
+      "rating": 4.8,
+      "past_trips": 220
+    }
+  ]
+}
