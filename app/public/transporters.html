@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Transporters</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+    h1 { color: #1E3A5F; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin: 12px 0;
+            display: flex; justify-content: space-between; align-items: center; }
+    .card h3 { margin: 0 0 6px; color: #1E3A5F; }
+    .badge { background: #1E3A5F; color: white; padding: 6px 14px; border-radius: 20px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>🚛 Available Transporters</h1>
+  <div id="list">Loading...</div>
+  <script>
+    fetch('/api/transporters')
+      .then(r => r.json())
+      .then(transporters => {
+        document.getElementById('list').innerHTML = transporters.map(t => `
+          <div class="card">
+            <div>
+              <h3>${t.name}</h3>
+              <p>Truck: ${t.truck} | Fare: ₹${t.fare_per_km}/km | Trips: ${t.past_trips}</p>
+            </div>
+            <span class="badge">⭐ ${t.rating}</span>
+          </div>`).join('');
+      });
+  </script>
+</body></html>
