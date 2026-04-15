@@ -15,11 +15,14 @@ app.get('/', (req, res) => {
 // ✅ GET all transporters (fixed path + error handling)
 app.get('/api/transporters', (req, res) => {
     try {
-        const db = JSON.parse(
-            fs.readFileSync(path.join(__dirname, 'public', 'db.json'), 'utf8')
-        );
+        const filePath = path.join(__dirname, 'public', 'db.json');
+
+        const data = fs.readFileSync(filePath, 'utf8');  // ✅ correct
+        const db = JSON.parse(data);                     // ✅ correct
+
         res.json(db.transporters);
     } catch (err) {
+        console.error(err);  // 👈 IMPORTANT (helps debug)
         res.status(500).json({ error: "Failed to load transporters" });
     }
 });
