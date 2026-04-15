@@ -6,7 +6,10 @@
       "truck": "Tata 407",
       "fare_per_km": 12,
       "rating": 4.5,
-      "past_trips": 120
+      "past_trips": 120,
+      "phone": "+91 9876543210",
+      "email": "ravi.logistics@gmail.com",
+      "location": "Delhi"
     },
     {
       "id": 2,
@@ -14,7 +17,10 @@
       "truck": "Ashok Leyland",
       "fare_per_km": 10,
       "rating": 4.2,
-      "past_trips": 85
+      "past_trips": 85,
+      "phone": "+91 9123456780",
+      "email": "singh.transport@yahoo.com",
+      "location": "Punjab"
     },
     {
       "id": 3,
@@ -22,7 +28,10 @@
       "truck": "Mahindra Bolero",
       "fare_per_km": 8,
       "rating": 4.7,
-      "past_trips": 200
+      "past_trips": 200,
+      "phone": "+91 9988776655",
+      "email": "kumar.carriers@gmail.com",
+      "location": "Mumbai"
     },
     {
       "id": 4,
@@ -30,7 +39,10 @@
       "truck": "Eicher Pro",
       "fare_per_km": 11,
       "rating": 4.3,
-      "past_trips": 150
+      "past_trips": 150,
+      "phone": "+91 9012345678",
+      "email": "sharma.freight@outlook.com",
+      "location": "Jaipur"
     },
     {
       "id": 5,
@@ -38,7 +50,10 @@
       "truck": "Tata LPT 1615",
       "fare_per_km": 13,
       "rating": 4.6,
-      "past_trips": 175
+      "past_trips": 175,
+      "phone": "+91 9090909090",
+      "email": "patel.transport@gmail.com",
+      "location": "Ahmedabad"
     },
     {
       "id": 6,
@@ -46,7 +61,10 @@
       "truck": "Ashok Leyland Dost",
       "fare_per_km": 9,
       "rating": 4.1,
-      "past_trips": 95
+      "past_trips": 95,
+      "phone": "+91 9345678901",
+      "email": "delhimovers@gmail.com",
+      "location": "Delhi"
     },
     {
       "id": 7,
@@ -54,7 +72,10 @@
       "truck": "Mahindra Jeeto",
       "fare_per_km": 7,
       "rating": 4.0,
-      "past_trips": 60
+      "past_trips": 60,
+      "phone": "+91 9871234567",
+      "email": "expresscargo@gmail.com",
+      "location": "Bangalore"
     },
     {
       "id": 8,
@@ -62,7 +83,10 @@
       "truck": "Eicher 1110",
       "fare_per_km": 14,
       "rating": 4.8,
-      "past_trips": 220
+      "past_trips": 220,
+      "phone": "+91 9765432109",
+      "email": "fasttrack@logistics.com",
+      "location": "Hyderabad"
     }
   ]
 }
