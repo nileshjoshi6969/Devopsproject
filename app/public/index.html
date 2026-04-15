@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Transport Bid App</title>
+</head>
+<body>
+  <h1>🚚 Transport Bid System</h1>
+
+  <form id="bidForm">
+    <input type="text" placeholder="From" id="from" required><br><br>
+    <input type="text" placeholder="To" id="to" required><br><br>
+    <input type="number" placeholder="Weight" id="weight" required><br><br>
+    <button type="submit">Submit Bid</button>
+  </form>
+
+  <p id="response"></p>
+
+  <a href="transporters.html">View Transporters</a>
+
+  <script>
+    document.getElementById("bidForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const from = document.getElementById("from").value;
+      const to = document.getElementById("to").value;
+      const weight = document.getElementById("weight").value;
+
+      const res = await fetch("/api/bids", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ from, to, weight })
+      });
+
+      const data = await res.json();
+      document.getElementById("response").innerText = data.message;
+    });
+  </script>
+</body>
+</html>
