@@ -1,41 +1,138 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Transport Bid App</title>
+  <title>Transport Bid</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4facfe;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      background: #4facfe;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2f80ed;
+    }
+
+    .link {
+      margin-top: 15px;
+      display: block;
+      text-decoration: none;
+      color: #4facfe;
+      font-weight: bold;
+    }
+
+    .link:hover {
+      text-decoration: underline;
+    }
+
+    #result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #eafaf1;
+      border-radius: 8px;
+      display: none;
+      font-size: 14px;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
 </head>
+
 <body>
-  <h1>🚚 Transport Bid System</h1>
 
-  <form id="bidForm">
-    <input type="text" placeholder="From" id="from" required><br><br>
-    <input type="text" placeholder="To" id="to" required><br><br>
-    <input type="number" placeholder="Weight" id="weight" required><br><br>
-    <button type="submit">Submit Bid</button>
-  </form>
+  <div class="container">
+    <h1>🚚 Transport Bid</h1>
 
-  <p id="response"></p>
+    <input id="from" placeholder="From (City)" />
+    <input id="to" placeholder="To (City)" />
+    <input id="weight" type="number" placeholder="Weight (tons)" />
 
-  <a href="transporters.html">View Transporters</a>
+    <button onclick="postBid()">Submit Bid</button>
+
+    <div id="result"></div>
+
+    <a href="transporters.html" class="link">View Transporters →</a>
+  </div>
 
   <script>
-    document.getElementById("bidForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
+    async function postBid() {
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const weight = document.getElementById('weight').value;
 
-      const from = document.getElementById("from").value;
-      const to = document.getElementById("to").value;
-      const weight = document.getElementById("weight").value;
+      if (!from || !to || !weight) {
+        alert("Please fill all fields");
+        return;
+      }
 
-      const res = await fetch("/api/bids", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+      const res = await fetch('/api/bids', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ from, to, weight })
       });
 
       const data = await res.json();
-      document.getElementById("response").innerText = data.message;
-    });
+
+      const resultBox = document.getElementById('result');
+      resultBox.style.display = "block";
+      resultBox.innerHTML = data.message + "<br><br><b>👉 Now check available transporters</b>";
+    }
   </script>
+
 </body>
 </html>

@@ -2,57 +2,102 @@
 <html>
 <head>
   <title>Transporters</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f6fa;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
       padding: 20px;
+      color: #333;
     }
 
     h1 {
       text-align: center;
-      color: #2f3640;
+      color: white;
+      margin-bottom: 30px;
+      font-size: 32px;
     }
 
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-top: 20px;
     }
 
     .card {
       background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     .card:hover {
-      transform: scale(1.03);
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
     }
 
     .card h3 {
-      margin: 0 0 10px;
-      color: #273c75;
+      color: #4a47a3;
+      margin-bottom: 10px;
     }
 
-    .card p {
-      margin: 5px 0;
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #4a47a3;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .info {
+      margin: 8px 0;
       font-size: 14px;
     }
 
-    .error {
-      text-align: center;
-      color: red;
-      font-size: 18px;
+    .highlight {
+      background: #f1f2f6;
+      padding: 8px;
+      border-radius: 8px;
+      margin-top: 10px;
     }
 
-    .loading {
+    .loading, .error {
       text-align: center;
       font-size: 18px;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .error {
+      color: #ff6b6b;
+    }
+
+    .button {
+      margin-top: 12px;
+      padding: 8px;
+      border: none;
+      background: #4a47a3;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #3b3a8f;
     }
   </style>
 </head>
@@ -61,7 +106,7 @@
 
   <h1>🚚 Available Transporters</h1>
 
-  <div id="status" class="loading">Loading...</div>
+  <div id="status" class="loading">Loading transporters...</div>
   <div class="container" id="list"></div>
 
   <script>
@@ -74,7 +119,7 @@
         const status = document.getElementById("status");
 
         if (!data || data.error) {
-          status.innerHTML = "❌ Failed to load data";
+          status.innerHTML = "❌ Failed to load transporters";
           status.className = "error";
           return;
         }
@@ -83,14 +128,21 @@
 
         list.innerHTML = data.map(t => `
           <div class="card">
+            <span class="badge">⭐ ${t.rating}</span>
+
             <h3>${t.name}</h3>
-            <p>🚛 <strong>Truck:</strong> ${t.truck}</p>
-            <p>💰 <strong>Fare/km:</strong> ₹${t.fare_per_km}</p>
-            <p>⭐ <strong>Rating:</strong> ${t.rating}</p>
-            <p>📦 <strong>Trips:</strong> ${t.past_trips}</p>
-            <p>📞 <strong>Phone:</strong> ${t.phone}</p>
-            <p>📧 <strong>Email:</strong> ${t.email}</p>
-            <p>📍 <strong>Location:</strong> ${t.location}</p>
+
+            <p class="info">🚛 Truck: <strong>${t.truck}</strong></p>
+            <p class="info">💰 Fare: ₹${t.fare_per_km}/km</p>
+            <p class="info">📦 Trips Completed: ${t.past_trips}</p>
+
+            <div class="highlight">
+              <p>📞 ${t.phone}</p>
+              <p>📧 ${t.email}</p>
+              <p>📍 ${t.location}</p>
+            </div>
+
+            <button class="button">Book Now</button>
           </div>
         `).join('');
 
